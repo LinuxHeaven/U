@@ -1,0 +1,845 @@
+1. List the contents of files 't1' 't2' and 't3' using a single command. 
+touch t1 t2 t3 
+echo "File t1 content" > t1 
+echo "File t2 content" > t2 
+echo "File t3 content" > t3 
+cat t1 t2 t3 
+File t1 content 
+File t2 content 
+File t3 content  
+2. Quickly create three new files t1, t2 and t3.  
+touch t1 t2 t3 
+3. Output the contents of the fields 1 and 3 from a text file student where the delimiter 
+between the fields is ":".  
+echo "101:Rahul:90" > student 
+echo "102:Amit:85" >> student 
+cut -d ":" -f1,3 student 
+101:90 
+102:85 
+4. List all the lines in a file ending with a ";".  
+echo "hello;" > file1 
+echo "world" >> file1 
+echo "unix;" >> file1 
+grep ";$" file1 
+hello; 
+unix; 
+5. List all the lines in a file which do not end with a semicolon.  
+grep -v ";$" file1 
+world 
+6. List the files of the parent directory.  
+ls .. 
+7. Find out from /bin and /usr/sbin directories all the file names begin with "s".  
+ls /bin/s* /usr/sbin/s* 
+/bin/savelog            /bin/sha256sum        /bin/ssh-keyscan           /bin/systemd-inhibit 
+/bin/scalar             /bin/sha384sum        /bin/stat                  /bin/systemd-machine-id-setup 
+/bin/scp                /bin/sha512sum        /bin/stdbuf                /bin/systemd-mount 
+/bin/screendump         /bin/shasum           /bin/streamzip             /bin/systemd-notify 
+/bin/script             /bin/showconsolefont  /bin/strings               /bin/systemd-path 
+/bin/scriptlive         /bin/showkey          /bin/strip                 /bin/systemd-repart 
+/bin/scriptreplay       /bin/shred            /bin/stty                  /bin/systemd-run 
+/bin/sdiff              /bin/shuf             /bin/su                    /bin/systemd-socket-activate 
+/bin/sed                /bin/size             /bin/sudo                  /bin/systemd-stdio-bridge 
+/bin/select-editor      /bin/skill            /bin/sudoedit              /bin/systemd-sysext 
+/bin/sensible-browser   /bin/slabtop          /bin/sudoreplay            /bin/systemd-sysusers 
+/bin/sensible-editor    /bin/sleep            /bin/sum                   /bin/systemd-tmpfiles 
+/bin/sensible-pager     /bin/slogin           /bin/sync                  /bin/systemd-tty-ask-password
+agent 
+/bin/sensible-terminal  /bin/snap             /bin/systemctl             /bin/systemd-umount 
+/bin/seq                /bin/snapctl          /bin/systemd               /usr/sbin/service 
+/bin/session-migration  /bin/snapfuse         /bin/systemd-ac-power      /usr/sbin/setcap 
+/bin/setarch            /bin/snice            /bin/systemd-analyze       /usr/sbin/setvesablank 
+/bin/setfont            /bin/soelim           /bin/systemd-ask-password  /usr/sbin/setvtrgb 
+/bin/setkeycodes        /bin/sort             /bin/systemd-cat           /usr/sbin/sfdisk 
+/bin/setleds            /bin/splain           /bin/systemd-cgls          /usr/sbin/sgdisk 
+/bin/setlogcons         /bin/split            /bin/systemd-cgtop         /usr/sbin/shadowconfig 
+/bin/setmetamode        /bin/splitfont        /bin/systemd-confext       /usr/sbin/shutdown 
+/bin/setpriv            /bin/sqfscat          /bin/systemd-creds         /usr/sbin/start-stop-daemon 
+/bin/setsid             /bin/sqfstar          /bin/systemd-cryptenroll   /usr/sbin/sudo_logsrvd 
+/bin/setterm            /bin/ss               /bin/systemd-cryptsetup    /usr/sbin/sudo_sendlog 
+/bin/setupcon           /bin/ssh              /bin/systemd-delta         /usr/sbin/sulogin 
+/bin/sftp               /bin/ssh-add          /bin/systemd-detect-virt   /usr/sbin/swaplabel 
+/bin/sg                 /bin/ssh-agent        /bin/systemd-escape        /usr/sbin/swapoff 
+/bin/sh                 /bin/ssh-argv0        /bin/systemd-firstboot     /usr/sbin/swapon 
+/bin/sha1sum            /bin/ssh-copy-id      /bin/systemd-hwdb          /usr/sbin/switch_root 
+/bin/sha224sum          /bin/ssh-keygen       /bin/systemd-id128         /usr/sbin/sysctl 
+8. Redirect the number of users currently logged on to a file aaa.  
+who | wc -l > aaa 
+9. Redirect the sorted output of names currently logged on users to a file.  
+who | sort > users.txt 
+10. Display first 10 lines and last 10 lines from a file aaa.  
+seq 1 50 > aaa 
+head aaa 
+tail aaa 
+1 
+2 
+3 
+4 
+5 
+6 
+7 
+8 
+9 
+10 
+41 
+42 
+43 
+44 
+45 
+46 
+47 
+48 
+49 
+50 
+11. Display 15 lines from the middle of the file. File contains 100 lines, you have to display 
+45-60 lines.  
+seq 1 100 > file100 
+sed -n '45,60p' file100 
+45 
+46 
+47 
+48 
+49 
+50 
+51 
+52 
+53 
+54 
+55 
+56 
+57 
+58 
+59 
+60 
+12. Write down the default permission of a file. Write a command to set all permission for 
+the user and remove all permission for group and others.  
+chmod 700 file100 
+13. Move the files p1 and p2 to the directory dest. 
+touch p1 p2 
+mkdir dest 
+mv p1 p2 dest/  
+14. There are two texts files c1 and c2. Write a command to display total number of words 
+in both the files.  
+echo "this is file one" > c1 
+echo "this is file two" > c2 
+wc -w c1 c2 
+4 c1 
+ 4 c2 
+ 8 total 
+15. List all the file names starting with a, b or s.  
+touch apple ball sun cat 
+ls [abs]* 
+aaa  apple  ball  student  sun 
+16. Create a new file named f1. Convert all the words of the file to uppercase.  
+echo "hello unix world" > f1 
+tr 'a-z' 'A-Z' < f1 > temp && mv temp f1 
+17. Display the total number of words in both files ‘temp’ and ‘exam’.  
+echo "sample text here" > temp 
+echo "another file content" > exam 
+wc -w temp exam 
+3 temp 
+ 3 exam 
+ 6 total 
+18. Write a command to display the current date on the terminal preceded by the string 
+“Today is”. 
+echo "Today is $(date)" 
+Today is Thu Apr 16 17:16:33 UTC 2026
+
+
+
+
+
+1. Display today’s date as eg. Monday, April 19, 2011 
+date "+%A, %B %d, %Y" 
+2. Display the calendar of February 2004  
+cal 2 2004 
+3. Save first 15 lines of file1 and last 5 lines of file2 into file3 
+seq 1 50 > file1 
+seq 51 100 > file2 
+head -15 file1 > file3 
+tail -5 file2 >> file3 
+cat file3 
+4. Create a directory structure like below 
+rcm 
+├── mba 
+│   ├── student 
+│   │    ├── firstsem 
+│   │    └── thirdsem 
+│   ├── faculty 
+│   └── staff 
+└── mca 
+    ├── student 
+    │    ├── firstsem 
+    │    ├── thirdsem  
+    │    └── fifthsem 
+    ├── faculty 
+    └── staff 
+mkdir -p rcm/mba/student/firstsem 
+mkdir -p rcm/mba/student/thirdsem 
+mkdir -p rcm/mba/faculty 
+mkdir -p rcm/mba/staff 
+mkdir -p rcm/mca/student/firstsem 
+mkdir -p rcm/mca/student/thirdsem 
+mkdir -p rcm/mca/student/fifthsem 
+mkdir -p rcm/mca/faculty 
+mkdir -p rcm/mca/staff 
+tree rcm 
+5. In the above directory structure do the following 
+5.1 Create an empty file named “student.lst” inside “rcm/mba/student/firstsem”  
+touch rcm/mba/student/firstsem/student.lst 
+ls rcm/mba/student/firstsem 
+5.2 Copy that file inside “rcm/mca/student/thirdsem” 
+cp rcm/mba/student/firstsem/student.lst rcm/mca/student/thirdsem/ 
+ls rcm/mca/student/thirdsem 
+5.3 Rename newly copied file to “mca-third-student.lst” 
+mv rcm/mca/student/thirdsem/student.lst rcm/mca/student/thirdsem/mca-third-student.lst 
+ls rcm/mca/student/thirdsem 
+5.4 Write your registration number and name in “mca-third-student.lst” 
+echo "Student1 1234567" > rcm/mca/student/thirdsem/mca-third-student.lst 
+cat rcm/mca/student/thirdsem/mca-third-student.lst 
+5.5 Delete mba directory 
+rm -r rcm/mba 
+ls rcm 
+6. Count how many visible files and directories are there in your home directory 
+ls ~ | wc -l 
+7. Suppose you have assigned to prepare a menu for college dinner party and prepare a 
+file named “ClgDinnerParty.mnu” 
+7.1 During preparation only you can see or modify the file 
+touch ClgDinnerParty.mnu 
+chmod 600 ClgDinnerParty.mnu 
+ls -l ClgDinnerParty.mnu 
+7.2 Friends can only see but cannot modify 
+chmod 640 ClgDinnerParty.mnu 
+ls -l ClgDinnerParty.mnu 
+7.3 After publish no one can modify the menu 
+chmod 444 ClgDinnerParty.mnu 
+ls -l ClgDinnerParty.mnu 
+8. Use grep command 
+8.1 Find all lines containing at least one digit 
+echo -e "abc123\nhello\nunix9" > data.txt 
+grep '[0-9]' data.txt 
+8.2 Find all lines containing either 1,2,3,8,9 or any lowercase character 
+grep '[12389a-z]' data.txt 
+8.3 Find lines where name format is First Middle(Optional) Last name 
+echo -e "Amit Kumar\nRahul Raj Sharma\nabc123" > names.txt 
+grep '^[A-Z][a-z]* [A-Z][a-z]*\( [A-Z][a-z]*\)\?$' names.txt 
+9. In a single command find number of files having extension “txt” in Present Working 
+Directory 
+ls *.txt 2>/dev/null | wc -l 
+10. Sort lines of two files in descending order and save in third file 
+echo -e "3\n1\n5" > f1 
+echo -e "2\n4\n6" > f2 
+cat f1 f2 | sort -r > f3 
+cat f3 
+
+
+
+
+
+1. Basic salary of an employee is input through the keyboard. His DA is 48% of basic, 
+HRA is 15% of basic, Medical allowance Rs.300/-, ST Rs.40/-, GPF is 5% of basic and IT 
+10% of gross salary. Write a program to calculate his gross salary and net salary.  
+#!/bin/bash 
+echo "Enter Basic Salary:" 
+read basic 
+da=$((basic * 48 / 100)) 
+hra=$((basic * 15 / 100)) 
+medical=300 
+st=40 
+gpf=$((basic * 5 / 100)) 
+gross=$((basic + da + hra + medical + st)) 
+it=$((gross * 10 / 100)) 
+net=$((gross - gpf - it)) 
+echo "DA = $da" 
+echo "HRA = $hra" 
+echo "Medical Allowance = $medical" 
+echo "ST = $st" 
+echo "Gross Salary = $gross" 
+echo "GPF = $gpf" 
+echo "Income Tax = $it" 
+echo "Net Salary = $net"  
+2. The length & breadth of a rectangle and radius of a circle are input through the 
+keyboard. Write a program to calculate the area & perimeter of the rectangle and the 
+area & circumference of the circle. 
+#!/bin/bash 
+echo "Enter length of rectangle:" 
+read l 
+echo "Enter breadth of rectangle:" 
+read b 
+echo "Enter radius of circle:" 
+read r 
+rect_area=$((l * b)) 
+rect_peri=$((2 * (l + b))) 
+circle_area=$(echo "3.14 * $r * $r" | bc) 
+circle_circum=$(echo "2 * 3.14 * $r" | bc) 
+echo "Rectangle Area = $rect_area" 
+echo "Rectangle Perimeter = $rect_peri" 
+echo "Circle Area = $circle_area" 
+echo "Circle Circumference = $circle_circum" 
+3. The three sides of a triangle are given through the keyboard. Write program to 
+calculate the area and perimeter of the triangle. Also check whether it is possible to 
+construct a triangle with the input provided.  
+#!/bin/bash 
+echo "Enter three sides:" 
+read a b c 
+if [ $((a+b)) -gt $c ] && [ $((a+c)) -gt $b ] && [ $((b+c)) -gt $a ] 
+then 
+    perimeter=$((a+b+c)) 
+    s=$((perimeter/2)) 
+    area=$(echo "scale=2; sqrt($s*($s-$a)*($s-$b)*($s-$c))" | bc) 
+    echo "Triangle is valid" 
+    echo "Perimeter = $perimeter" 
+    echo "Area = $area" 
+else 
+    echo "Triangle cannot be formed" 
+fi 
+4. Calculate the area of a trapezoid by taking necessary input from the keyboard.  
+#!/bin/bash 
+echo "Enter first parallel side:" 
+read a 
+echo "Enter second parallel side:" 
+read b 
+echo "Enter height:" 
+read h 
+area=$(echo "(($a + $b) * $h)/2" | bc) 
+echo "Area of Trapezoid = $area" 
+5. Write a shell script which receives any year from the keyboard and determines whether 
+the year is a leap year or not. If no argument is supplied the current year should be 
+assumed.  
+#!/bin/bash 
+if [ $# -eq 0 ] 
+then 
+    year=$(date +%Y) 
+else 
+    year=$1 
+fi 
+if [ $((year % 400)) -eq 0 ] || { [ $((year % 4)) -eq 0 ] && [ $((year % 100)) -ne 0 ]; } 
+then 
+    echo "$year is a Leap Year" 
+else 
+    echo "$year is not a Leap Year" 
+fi 
+6. An integer is input through the keyboard. Write a program to find out whether it is an 
+odd number or even number.  
+#!/bin/bash 
+echo "Enter a number:" 
+read n 
+ 
+if [ $((n % 2)) -eq 0 ] 
+then 
+    echo "$n is Even" 
+else 
+    echo "$n is Odd" 
+fi 
+7. If cost price and selling price of an item is input through the keyboard, write a program 
+to determine whether the seller has made profit or incurred loss. Also determine how 
+much profit was made or loss incurred in terms of percentage.  
+#!/bin/bash 
+echo "Enter Cost Price:" 
+read cp 
+echo "Enter Selling Price:" 
+read sp 
+if [ $sp -gt $cp ] 
+then 
+    profit=$((sp - cp)) 
+    percent=$((profit * 100 / cp)) 
+    echo "Profit = $profit" 
+    echo "Profit Percentage = $percent%" 
+elif [ $cp -gt $sp ] 
+then 
+    loss=$((cp - sp)) 
+    percent=$((loss * 100 / cp)) 
+    echo "Loss = $loss" 
+    echo "Loss Percentage = $percent%" 
+else 
+    echo "No Profit No Loss" 
+fi 
+8. Write a shell script to construct a shell calculator that can perform addition, 
+subtraction, multiplication and division. (use switch case statement) 
+#!/bin/bash 
+echo "Enter first number:" 
+read a 
+echo "Enter second number:" 
+read b 
+echo "Choose operation:" 
+echo "1. Addition" 
+echo "2. Subtraction" 
+echo "3. Multiplication" 
+echo "4. Division" 
+read ch 
+case $ch in 
+1) 
+    echo "Addition = $((a+b))" 
+    ;; 
+2) 
+    echo "Subtraction = $((a-b))" 
+    ;; 
+3) 
+    echo "Multiplication = $((a*b))" 
+    ;; 
+4) 
+    echo "Division = $(echo "scale=2; $a/$b" | bc)" 
+    ;; 
+*) 
+    echo "Invalid Choice" 
+    ;; 
+esac 
+
+
+
+
+
+1. Write a shell script which receives two filenames as arguments. It should check whether 
+the two file's contents are same or not. If they are same then second file should be deleted. 
+(Hint: Use the cmp command to compare files).  
+#!/bin/bash 
+if cmp -s $1 $2 
+then 
+    echo "Files are same" 
+    rm $2 
+    echo "$2 deleted" 
+else 
+    echo "Files are different" 
+fi 
+2. Write a shell program that will input the range (n) through command line and print all 
+the prime numbers within that range (starting from 0).  
+#!/bin/bash 
+n=$1 
+echo "Prime numbers from 0 to $n are:" 
+for ((i=2; i<=n; i++)) 
+do 
+    flag=0 
+    for ((j=2; j<=i/2; j++)) 
+    do 
+        if [ $((i % j)) -eq 0 ] 
+        then 
+            flag=1 
+            break 
+        fi 
+    done 
+    if [ $flag -eq 0 ] 
+    then 
+        echo $i 
+    fi 
+done 
+3. Write a shell script which gets executed the moment the user logs in. It should display 
+the massage "GoodMorning"/"GoodAfternoon"/"GoodEvening" depending upon the 
+time at which the user logs in.  
+#!/bin/bash 
+hour=$(date +%H) 
+if [ $hour -lt 12 ] 
+then 
+    echo "GoodMorning" 
+elif [ $hour -lt 17 ] 
+then 
+    echo "GoodAfternoon" 
+else 
+    echo "GoodEvening" 
+fi 
+4. a) Create a phone book with name and phone number of 10 persons using command 
+line. 
+cat > phonebook.txt 
+Aman 9999954321 
+Rahul 8888854321 
+Soham 7777754321 
+Riya 5555543210 
+Priya 4444543210 
+Ankit 3333543210 
+Neha 2222543210 
+Arjun 1111543210 
+Karan 0000054321 
+Tina 5432154321 
+4. b) Search for a record in the file whether the name of the person is present or not, the 
+name of the person whose name to be found out will be supplied through command line.  
+#!/bin/bash 
+grep "$1" phonebook.txt 
+4. c) Delete a record from the file, the name of the person whose name to be deleted will 
+be supplied through command line.  
+#!/bin/bash 
+grep -v "$1" phonebook.txt > temp.txt 
+mv temp.txt phonebook.txt 
+echo "Record deleted" 
+5. Write a shell script that accepts one or more filenames as argument and convert all of 
+them to uppercase, provided they exists in the current directory.  
+#!/bin/bash 
+for file in "$@" 
+do 
+    if [ -f "$file" ] 
+    then 
+        newname=$(echo "$file" | tr 'a-z' 'A-Z') 
+        mv "$file" "$newname" 
+        echo "$file renamed to $newname" 
+    else 
+        echo "$file does not exist" 
+    fi 
+done 
+6. Write a shell script that counts the number of directories under the current directory. 
+And also counts the files whose size is greater than 200 bytes.  
+#!/bin/bash 
+dircount=$(find . -type d | wc -l) 
+filecount=$(find . -type f -size +200c | wc -l) 
+echo "Directories = $dircount" 
+echo "Files greater than 200 bytes = $filecount" 
+7. Write a shell script that accepts a filename as argument and displays its creation time, 
+if the file exists and if it does not exist, write an appropriate message. Also print whether 
+the existing file is readable, writable or executable.  
+#!/bin/bash 
+if [ -e "$1" ] 
+then 
+    echo "File exists" 
+    stat "$1" 
+    [ -r "$1" ] && echo "Readable" 
+    [ -w "$1" ] && echo "Writable" 
+    [ -x "$1" ] && echo "Executable" 
+else 
+    echo "File does not exist" 
+fi 
+8. Write a shell script to find the smallest of three numbers that are read from the 
+keyboard.  
+#!/bin/bash 
+echo "Enter three numbers:" 
+read a b c 
+small=$a 
+if [ $b -lt $small ] 
+then 
+    small=$b 
+fi 
+if [ $c -lt $small ] 
+then 
+    small=$c 
+fi 
+echo "Smallest number = $small" 
+9. Write a program to find the value of one number raised to the power of another. The 
+numbers are entered through the keyboard.  
+#!/bin/bash 
+echo "Enter base number:" 
+read a 
+echo "Enter power:" 
+read b 
+result=1 
+for ((i=1; i<=b; i++)) 
+do 
+    result=$((result * a)) 
+done 
+echo "Result = $result" 
+10. Write a program to find the factorial value of any number entered through the 
+command line.  
+#!/bin/bash 
+n=$1 
+fact=1 
+for ((i=1; i<=n; i++)) 
+do 
+    fact=$((fact * i)) 
+done 
+echo "Factorial = $fact" 
+11. Write a shell program to check if someone is logged on or not using command line.  
+#!/bin/bash 
+if who | grep "$1" > /dev/null 
+then 
+    echo "$1 is logged in" 
+else 
+    echo "$1 is not logged in" 
+fi 
+12. Write a shell program to check whether a number is palindrome or not. 
+#!/bin/bash 
+echo "Enter a number:" 
+read n 
+temp=$n 
+rev=0 
+while [ $n -gt 0 ] 
+do 
+    rem=$((n % 10)) 
+    rev=$((rev * 10 + rem)) 
+    n=$((n / 10)) 
+done 
+if [ $temp -eq $rev ] 
+then 
+    echo "Palindrome Number" 
+else 
+    echo "Not a Palindrome Number" 
+fi 
+
+
+
+
+
+1. Write a C program to display the process id of child and parent processes, where the 
+child is created using the fork() system call.  
+#include <stdio.h> 
+#include <unistd.h> 
+#include <stdlib.h> 
+int main(void) 
+{ 
+    int pid = 0; 
+    pid = fork(); 
+    if(pid == 0) 
+    { 
+        printf("I am the child.\n"); 
+    } 
+    else if(pid > 0) 
+    { 
+        printf("I am the parent, the child is %d.\n", pid); 
+    } 
+    else 
+    { 
+        perror("fork"); 
+        exit(0); 
+    } 
+    return 0; 
+}  
+2. Write a C program to create an orphan process. Also explain which process takes 
+responsibility of the orphan process.  
+#include <stdio.h> 
+#include <unistd.h> 
+#include <stdlib.h> 
+#include <sys/types.h> 
+#include <sys/wait.h> 
+int main(void) 
+{ 
+    int pid = 0; 
+    int status; 
+    pid = fork(); 
+    if(pid == 0) 
+    { 
+        printf("I am the child.\n"); 
+        sleep(10); 
+        printf("I am the child, 10 seconds later.\n"); 
+    } 
+    if(pid > 0) 
+    { 
+        printf("I am the parent, the child is %d.\n", pid); 
+        pid = wait(&status); 
+        printf("End of process %d.\n", pid); 
+        if(WIFEXITED(status)) 
+        { 
+            printf("The process ended with exit status: %d.\n", 
+                   WEXITSTATUS(status)); 
+        } 
+        if(WIFSIGNALED(status)) 
+        { 
+            printf("The process ended with kill signal: %d.\n", 
+                   WTERMSIG(status)); 
+        } 
+    } 
+    if(pid < 0) 
+    { 
+        perror("In fork()"); 
+    } 
+    exit(0); 
+    return 0; 
+} 
+3. Write a C Program using a system call so that parent is going to wait until child finishes.  
+#include <stdio.h> 
+#include <unistd.h> 
+#include <stdlib.h> 
+int main() 
+{ 
+    printf("\nCurrently running process has PID: %d\n", getpid()); 
+    int error = execl("/usr/bin/ps", "ps", "-l", NULL); 
+    if(error == -1) 
+    { 
+        perror("\nThere was an error during the execl function!\n"); 
+        exit(-1); 
+    } 
+    return 0; 
+} 
+4. Write a C program using fork() system call to show how a file can be shared between 
+processes.  
+#include <stdio.h> 
+#include <unistd.h> 
+#include <stdlib.h> 
+#include <sys/types.h> 
+#include <sys/wait.h> 
+#include <fcntl.h> 
+int main() 
+{ 
+    int fd = open("shared_file.txt", 
+                  O_WRONLY | O_CREAT | O_TRUNC, 
+                  0666); 
+    if(fd == -1) 
+    { 
+        perror("open"); 
+        exit(EXIT_FAILURE); 
+    } 
+    pid_t pid = fork(); 
+    if(pid == -1) 
+    { 
+        perror("fork"); 
+        exit(EXIT_FAILURE); 
+    } 
+    else if(pid == 0) 
+    { 
+        printf("Child process writing to file\n"); 
+        dprintf(fd, "Hello from child process\n"); 
+        close(fd); 
+        exit(EXIT_SUCCESS); 
+    } 
+    else 
+    { 
+        printf("Parent process waiting for child to finish\n"); 
+        wait(NULL); 
+        printf("Parent process writing to file\n"); 
+        dprintf(fd, "Hello from parent process\n"); 
+        close(fd); 
+    } 
+    return 0; 
+} 
+5. Write a C program that will show the use of exec() and fork() system call together. 
+#include <stdio.h> 
+#include <unistd.h> 
+#include <stdlib.h> 
+int main() 
+{ 
+    int pid; 
+    pid = fork(); 
+    if(pid == 0) 
+    { 
+        printf("Child process executing ls command\n"); 
+        execl("/bin/ls", "ls", "-l", NULL); 
+        perror("execl failed"); 
+    } 
+    else if(pid > 0) 
+    { 
+        printf("Parent process waiting for child\n"); 
+        wait(NULL); 
+        printf("Child process completed\n"); 
+    } 
+    else 
+    { 
+        perror("fork failed"); 
+    } 
+    return 0; 
+} 
+
+
+
+
+
+1. Write a program to get an interrupt from machine and display the number of that 
+interrupt.  
+#include <stdio.h> 
+#include <signal.h> 
+#include <stdlib.h> 
+void handler(int sig) 
+{ 
+    printf("\nInterrupt Signal Received: %d\n", sig); 
+    exit(0); 
+} 
+int main() 
+{ 
+    signal(SIGINT, handler); 
+    printf("Press Ctrl+C to generate interrupt...\n"); 
+    while(1); 
+    return 0; 
+} 
+2. Implement SIGALARM that causes an alarm.  
+#include <stdio.h> 
+#include <signal.h> 
+#include <unistd.h> 
+void alarm_handler(int sig) 
+{ 
+    printf("Alarm Signal Received!\n"); 
+} 
+int main() 
+{ 
+    signal(SIGALRM, alarm_handler); 
+    alarm(5); 
+    printf("Waiting for alarm...\n"); 
+    pause(); 
+    return 0; 
+} 
+3. Write a program to create a child process. Send SIGCLD signal after 5 sec. 
+#include <stdio.h> 
+#include <unistd.h> 
+#include <signal.h> 
+#include <sys/wait.h> 
+void sigcld_handler(int sig) 
+{ 
+    printf("SIGCLD Signal Received\n"); 
+} 
+int main() 
+{ 
+    signal(SIGCLD, sigcld_handler); 
+    pid_t pid = fork(); 
+    if(pid == 0) 
+    { 
+        printf("Child Process Running...\n"); 
+        sleep(5); 
+        printf("Child Process Exiting...\n"); 
+    } 
+    else 
+    { 
+        wait(NULL); 
+    } 
+    return 0; 
+} 
+
+
+
+
+
+1. Write a program for reading output from an external program using the popen() 
+function.  
+#include <stdio.h> 
+int main() 
+{ 
+    FILE *fp; 
+    char buffer[100]; 
+    fp = popen("date", "r"); 
+    while(fgets(buffer, sizeof(buffer), fp) != NULL) 
+    { 
+        printf("%s", buffer); 
+    } 
+    pclose(fp); 
+    return 0; 
+} 
+2. Write a program to send output to a process using the popen() function.  
+#include <stdio.h> 
+int main() 
+{ 
+    FILE *fp; 
+    fp = popen("wc", "w"); 
+    fprintf(fp, "Hello World\n"); 
+    fprintf(fp, "Operating System\n"); 
+    pclose(fp); 
+    return 0; 
+} 
+3. Write a program for reading large amount of data from a pipe.  
+#include <stdio.h> 
+int main() 
+{ 
+    FILE *fp; 
+    char buffer[256]; 
+    fp = popen("ls -l", "r"); 
+    while(fgets(buffer, sizeof(buffer), fp) != NULL) 
+    { 
+        printf("%s", buffer); 
+    } 
+    pclose(fp); 
+    return 0; 
+} 
+4. Write a program using pipe system call to communicate messages among two 
+programs. 
+#include <stdio.h> 
+#include <unistd.h> 
+#include <string.h> 
+int main() 
+{ 
+    int fd[2]; 
+    char msg[] = "Hello from Parent"; 
+    char buffer[100]; 
+    pipe(fd); 
+    if(fork() == 0) 
+    { 
+        close(fd[1]); 
+        read(fd[0], buffer, sizeof(buffer)); 
+        printf("Child Received: %s\n", buffer); 
+        close(fd[0]); 
+    } 
+    else 
+    { 
+        close(fd[0]); 
+        write(fd[1], msg, strlen(msg)+1); 
+        close(fd[1]); 
+    } 
+    return 0; 
+} 
